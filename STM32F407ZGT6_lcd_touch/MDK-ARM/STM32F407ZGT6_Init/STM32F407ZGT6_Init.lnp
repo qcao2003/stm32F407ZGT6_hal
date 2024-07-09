@@ -10,6 +10,7 @@
 "stm32f407zgt6_init\main.o"
 "stm32f407zgt6_init\gpio.o"
 "stm32f407zgt6_init\fsmc.o"
+"stm32f407zgt6_init\tim.o"
 "stm32f407zgt6_init\usart.o"
 "stm32f407zgt6_init\stm32f4xx_it.o"
 "stm32f407zgt6_init\stm32f4xx_hal_msp.o"

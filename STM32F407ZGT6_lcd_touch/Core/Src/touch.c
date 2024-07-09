@@ -3,7 +3,7 @@
 #include "stdlib.h"
 #include "math.h"
 #include "usart.h"
-
+#include "tim.h"
 
 #include "GBK_LibDrive.h"	
 	
@@ -72,7 +72,7 @@ void TP_Write_Byte(u8 num)
 		else TDIN_CLR;   
 		num<<=1;    
 		TCLK_CLR; 
-		HAL_Delay(1);
+		delay_us(1);
 		TCLK_SET;		//上升沿有效	        
 	}		 			    
 } 
@@ -101,20 +101,17 @@ u16 TP_Read_AD(u8 CMD)
 	TDIN_CLR; 	//拉低数据线
 	TCS_CLR; 		//选中触摸屏IC
 	TP_Write_Byte(CMD);//发送命令字
-//	delay_us(6);//ADS7846的转换时间最长为6us
-	HAL_Delay(1);
+	delay_us(6);//ADS7846的转换时间最长为6us
 	TCLK_CLR; 	     	    
-//	delay_us(1); 
-	HAL_Delay(1);
+	delay_us(1); 
 	TCLK_SET;		//给1个时钟，清除BUSY
-	HAL_Delay(1);    
+	delay_us(1);  
 	TCLK_CLR; 	     	    
 	for(count=0;count<16;count++)//读出16位数据,只有高12位有效 
 	{ 				  
 		Num<<=1; 	 
 		TCLK_CLR;	//下降沿有效  	    	   
-//		delay_us(1); 
-		HAL_Delay(1);
+		delay_us(1); 
  		TCLK_SET;
  		if(DOUT)Num++; 		 
 	}  	

@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 #include "fsmc.h"
@@ -46,27 +47,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-// 初始化SysTick定时器用于微秒级延时
-void SysTick_Delay_Us(uint32_t us) {
-    // 获取当前的HCLK时钟频率
-    const uint32_t sysclk_freq = HAL_RCC_GetHCLKFreq();
-    // 计算SysTick加载值
-    uint32_t reload = (us * (sysclk_freq / 8 / 1000000));
- 
-    // 使能SysTick中断
-    SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;
-    // 设置SysTick的重载值
-    SysTick->LOAD = reload;
-    // 使能SysTick
-    SysTick->VAL = 0;
-    SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
-    // 等待SysTick定时器溢出
-    while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0);
-    // 关闭SysTick
-    SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
-    // 清除SysTick中断标志位
-    SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;
-}
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -110,6 +91,7 @@ int main(void)
   MX_GPIO_Init();
   MX_FSMC_Init();
   MX_USART1_UART_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 	LCD_Init();
 	// 开启串口接收中断
@@ -121,8 +103,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		TP_Read_XY(&tp_dev.x[0],&tp_dev.y[0]);
-		printf("x is 0x%X,y is 0x%X\r\n",tp_dev.x[0],tp_dev.y[0]);
+		if(TP_Scan(1))	
+			printf("x is 0x%X,y is 0x%X\r\n",tp_dev.x[0],tp_dev.y[0]);
 		if(usart1Recv.recvFlag == 1)
 		{
 			usart1Recv.recvFlag = 0;

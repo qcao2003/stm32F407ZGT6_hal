@@ -33,6 +33,8 @@ stm32f407zgt6_init\picture.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_
 stm32f407zgt6_init\picture.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_fsmc.h
 stm32f407zgt6_init\picture.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 stm32f407zgt6_init\picture.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+stm32f407zgt6_init\picture.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+stm32f407zgt6_init\picture.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 stm32f407zgt6_init\picture.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 stm32f407zgt6_init\picture.o: ../Core/Inc/GBK_LibDrive.h
 stm32f407zgt6_init\picture.o: ../Core/Inc/lcd.h

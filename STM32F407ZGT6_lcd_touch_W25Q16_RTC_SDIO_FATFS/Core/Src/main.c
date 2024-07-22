@@ -41,7 +41,7 @@
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */  
+/* USER CODE BEGIN PD */
 UINT fnum; 
 BYTE ReadBuffer[1024] = {0};
 BYTE WriteBuffer[] ="This is STM32 working with FatFs\r\n";
